@@ -1,0 +1,516 @@
+!<arch>
+0-isupper.c/    0           0     0     644     228       `
+#include "main.h"
+
+/**
+ * _isupper - Checks for uppercase characters
+ *
+ * @c: Number to be checked
+ *
+ * Return: 1 (Sucess) OR 0 (Failure)
+ */
+
+int _isupper(int c)
+{
+	if (c >= 65 && c <= 90)
+		return (1);
+	else
+		return (0);
+}
+0-memset.c/     0           0     0     644     339       `
+#include "main.h"
+/**
+*_memset - The _memset() function fills
+* the first n bytes of the memory area
+* pointed to by s with the constant byte b
+*@s:target
+*@b: constant byte
+*@n:number of byte
+*Return: returns new value of target
+*/
+
+char *_memset(char *s, char b, unsigned int n)
+{
+	while (n)
+	{
+		s[n - 1] = b;
+		n--;
+	}
+	return (s);
+
+}
+
+0-strcat.c/     0           0     0     644     523       `
+/**
+ * _strcat - function that concatenates
+ *          two strings.
+ *
+ * @dest: pointer to destnation input
+ * @src: pointer to source input
+ *
+ * Return: pointer to resulting string @dest
+*/
+
+char *_strcat(char *dest, char *src)
+{
+	int c, c2;
+
+	c = 0;
+	/*find the size of dest array*/
+	while (dest[c])
+		c++;
+
+	/* iterate through each src array value without the null byte*/
+	for (c2 = 0; src[c2] ; c2++)
+		/*append src[c2] to dest[c] while overwritting the null byte in dest*/
+		dest[c++] = src[c2];
+
+	return (dest);
+}
+
+100-atoi.c/     0           0     0     644     310       `
+/**
+* _atoi - changes a string to an int
+* @s: the string to be changed
+*
+* Return: the converted int
+*/
+int _atoi(char *s)
+{
+int i = 1;
+unsigned int num = 0;
+do {
+if (*s == '-')
+i *= -1;
+else if (*s >= '0' && *s <= '9')
+num = num * 10 + (*s - '0');
+else if (num > 0)
+break;
+} while (*s++);
+return (num *i);
+}
+1-isdigit.c/    0           0     0     644     198       `
+/**
+ * _isdigit - checks if input is digit between 0 - 9
+ *
+ * @c: input
+ *
+ * Return: 1 if is digit, 0 if not
+*/
+
+int _isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
+}
+1-memcpy.c/     0           0     0     644     390       `
+#include "main.h"
+/**
+*_memcpy - The _memcpy() function copies n bytes
+* from memory area src to memory area dest
+*@dest:area where bytes are copied to
+*@src:area where bytes are copied from
+*@n:number of bytes to copy
+*Return: returns a pointer to n
+*/
+char *_memcpy(char *dest, char *src, unsigned int n)
+{
+	unsigned int i = 0;
+
+	for (; i < n; i++)
+		dest[i] = src[i];
+
+	return (dest);
+}
+1-strncat.c/    0           0     0     644     539       `
+/**
+ * _strncat - a function that concatenates two strings.
+ *
+ * @dest: pointer to destination input
+ * @src: pointer to source input
+ * @n: most number of bytes from @src
+ *
+ * Return: @dest
+*/
+
+char *_strncat(char *dest, char *src, int n)
+{
+	int c, i;
+
+	c = 0;
+
+	/*find size of dest array*/
+	while (dest[c])
+		c++;
+
+	/**
+	 * src does not need to be null terminated
+	 * if it contains n or more bytes
+	*/
+	for (i = 0; i < n && src[i] != '\0'; i++)
+		dest[c + i] = src[i];
+	/*null terminate dest*/
+	dest[c + i] = '\0';
+
+	return (dest);
+}
+
+2-strchr.c/     0           0     0     644     286       `
+#include "main.h"
+
+/**
+ * _strchr - Loctes a character in a string
+ *
+ * @s: The string to check
+ *
+ * @c: The character to find
+ *
+ * Return: Pointer to @s or NULL
+ *
+ */
+
+char *_strchr(char *s, char c)
+{
+	while (*s)
+	{
+		s++;
+
+		if (*s == c)
+		{
+			return (s);
+		}
+	}
+
+	return (0);
+}
+2-strlen.c/     0           0     0     644     225       `
+/**
+ * _strlen - returns the length of a string
+ *
+ * @s: string parameter input
+ *
+ * Return: length of string
+*/
+
+int _strlen(char *s)
+{
+	int counter;
+
+	for (counter = 0; *s != '\0'; ++s)
+		++counter;
+
+	return (counter);
+}
+
+2-strncpy.c/    0           0     0     644     683       `
+/**
+ * _strncpy - A function that copies a string.
+ *
+ * @dest: pointer to destination input buffer
+ * @src: pointer to source input buffer
+ * @n: bytes of @src
+ *
+ * Return: @dest
+*/
+
+char *_strncpy(char *dest, char *src, int n)
+{
+	int i;
+
+	/**
+	 * iterate through src array
+	 * where if there is no null byte
+	 * among the first n bytes of source
+	 * the string placed in dest will not be
+	 * null terminated
+	*/
+	for (i = 0; i < n && src[i] != '\0'; i++)
+		dest[i] = src[i];
+	/**
+	 * if the length of source is less than n
+	 * write additional nullbytes to dest to
+	 * ensure that a total of n bytes is written
+	*/
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+
+	return (dest);
+}
+
+3-islower.c/    0           0     0     644     286       `
+#include"main.h"
+
+/**
+ * _islower - function to check if
+ *           character is lowercase
+ *
+ * @c: checks input of function
+ *
+ * Return: returns 1 if  is lowercase
+ *         otherwise always 0 (Success)
+*/
+
+int _islower(int c)
+{
+if (c >= 97 && c <= 122)
+return (1);
+return (0);
+}
+3-puts.c/       0           0     0     644     248       `
+#include"main.h"
+
+/**
+ * _puts - prints a string, followed by a newline to stdout
+ *
+ * @str: string parameter to print
+ *
+ * Return: Nothing
+*/
+
+void _puts(char *str)
+{
+	while (*str != '\0')
+	{
+		_putchar(*str + 0);
+		++str;
+	}
+	_putchar('\n');
+}
+3-strcmp.c/     0           0     0     644     886       `
+/**
+ * _strcmp - a function that compares two strings
+ *
+ * @s1: string 1 input to compare
+ * @s2: against this other string 2
+ *
+ * Return: 0 if s1 and s2 are equal
+ *        negative integer if the stopping character
+ *                in @s1 was less than the stopping
+ *                character in @s2
+ *        positive integer if the stopping character
+ *                in @s1 was greater than the stopping
+ *                character in @s2
+*/
+
+int _strcmp(char *s1, char *s2)
+{
+	int i = 0, r;
+
+	/**
+	 * iterate through src and
+	 * compare it with dest
+	*/
+	while (s1[i] != '\0' && s2[i] != '\0')
+	{
+		/**
+		 * if they differ by a single character
+		 * don't iterate further
+		*/
+		if (s1[i] != s2[i])
+		{
+			/*
+			 * return the difference between
+			 * the two characters
+			*/
+			r = s1[i] - s2[i];
+			break;
+		}
+		else
+		{
+			r = s1[i] - s2[i];
+		}
+		i++;
+	}
+
+	return (r);
+}
+3-strspn.c/     0           0     0     644     574       `
+#include "main.h"
+/**
+*_strspn - search the number of bytes in the initial
+* segment of s which consist only of bytes from accept
+*@s:segment targeted
+*@accept:reference bytes container
+*
+*Return:returns the number of bytes in the initial
+* segment of s which consist only of bytes from accept
+*/
+unsigned int _strspn(char *s, char *accept)
+{
+	unsigned int bytes = 0;
+	int i;
+
+	while (*s)
+	{
+		for (i = 0; accept[i]; i++)
+		{
+			if (accept[i] == *s)
+			{
+				bytes++;
+				break;
+			}
+			else if ((accept[i + 1]) == '\0')
+				return (bytes);
+		}
+		s++;
+	}
+	return (bytes);
+}
+4-isalpha.c/    0           0     0     644     285       `
+#include "main.h"
+
+/**
+ * _isalpha - Return 1 if c is a letter. lowercase or uppercase
+ *
+ *    *@c: The int to print
+ *
+ *     * Return: Always 0.
+ */
+
+int _isalpha(int c)
+
+{
+
+
+	if ((c > 'a' && c < 'z') || (c > 'A' && c < 'Z'))
+
+	{
+
+		return (1);
+
+	}
+
+
+	else
+
+	{
+
+		return (0);
+
+	}
+}
+
+4-strpbrk.c/    0           0     0     644     528       `
+#include "main.h"
+/**
+*_strpbrk - The _strpbrk() function locates the first
+* occurrence in the string s of any of the bytes in
+*the string accept
+*
+*@s: string where search is made
+*@accept: string where searched bytes are located
+*
+*Return:Returns a pointer to the byte in s that matches
+* one of the bytes in accept, or NULL if no such byte is found
+*/
+
+char *_strpbrk(char *s, char *accept)
+{
+	int i;
+
+	while (*s)
+	{
+		for (i = 0; accept[i]; i++)
+		{
+			if (accept[i] == *s)
+				return (s);
+		}
+		s++;
+	}
+
+	return ('\0');
+}
+5-strstr.c/     0           0     0     644     713       `
+#include "main.h"
+/**
+*_strstr - The _strstr() function finds the first occurrence
+* of the substring needle in the string haystack.
+* The terminating null bytes (\0) are not compared
+*@haystack: string where the search is made
+*@needle: string whose occurence is searched in haystack
+*Return:Returns a pointer to the beginning of the located
+* substring, or NULL if the substring is not found.
+*/
+
+char *_strstr(char *haystack, char *needle)
+{
+	int i;
+
+	if (*needle == 0)
+		return (haystack);
+
+	while (*haystack)
+	{
+		i = 0;
+
+		if (haystack[i] == needle[i])
+		{
+			do {
+				if (needle[i + 1] == '\0')
+					return (haystack);
+				i++;
+			} while (haystack[i] == needle[i]);
+		}
+		haystack++;
+	}
+	return ('\0');
+}
+
+6-abs.c/        0           0     0     644     246       `
+#include"main.h"
+
+/**
+ * _abs - function that computes the absolute
+ *       value of an integer
+ *
+ * @n: takes in integer type input for function
+ *
+ * Return: Always 0 (Success)
+*/
+
+int _abs(int n)
+{
+	if (n < 0)
+		n = (-1) * n;
+	return (n);
+}
+9-strcpy.c/     0           0     0     644     264       `
+#include "main.h"
+/**
+* _strcpy - Copy paste string
+*@dest: destination
+*@src: source
+*Return: dest
+*/
+char *_strcpy(char *dest, char *src)
+{
+int inc = 0;
+while (*(src + inc) != '\0')
+{
+*(dest + inc) = *(src + inc);
+inc++;
+}
+*(dest + inc) = '\0';
+return (dest);
+}
+_putchar.c/     0           0     0     644     265       `
+#include "main.h"
+#include <unistd.h>
+
+/**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
+
